@@ -1,13 +1,9 @@
-require "Adapter"
-require "PData"
 require "Tool"
+require "Debug"
+require "Task"
+
+init(0,1)
 
 
-Adapter.Init()
-Tool.Assert(Adapter.RegisterCurrentDisplay({1920,1080}))
-
-Type = Adapter.FindCurrentData()
-
---Using PData[Type] to catch picture
-
-
+Task:Init()
+Task:Start()
