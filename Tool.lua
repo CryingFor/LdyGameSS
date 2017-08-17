@@ -33,13 +33,10 @@ function Tool.FindPointInRegion(region,muti_colors)
 	end
 end
 
-function Tool.CheckPoint(x,y,muti_colors)
+function Tool.CheckPoint(x,y,color)
 	local ret = true
-	for key,c in pairs(muti_colors) do
-		if (getColor(muti_colors[1],muti_colors[2]) ~= muti_colors[3]) then
-			ret = false 
-			break
-		end
+	if (getColor(x,y) ~= color) then
+		ret = false
 	end
 	return ret
 end
