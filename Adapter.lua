@@ -35,7 +35,9 @@ Adapter.RegisterDisplay = {
 function Adapter.Init()
 	--To Get Screen size. Get system type and so on.
 	--TODO 返回分辨率，返回系统类型
-	
+	local x,y = getScreenSize()
+	Adapter.DisplaySize  = {y,x}
+	Adapter.System = getOSType()
 	
 	--注册开发的分辨率
 	Adapter.RegisterCurrentDisplay({1280,720})
@@ -48,7 +50,7 @@ function Adapter.Init()
 	PData.d = PData.data[Adapter.System .. "." .. Adapter.DisplaySizePData[1] .. "x" .. Adapter.DisplaySizePData[2]]
 	
 	--TODO 设置分辨率缩放
-	
+	setScreenScale(Adapter.DisplaySizePData[1],Adapter.DisplaySizePData[2])
 	
 end
 
@@ -67,7 +69,7 @@ function Adapter.RegisterCurrentDisplay(size)
 	local found_flag = false
 	
 	for key,v in pairs(Adapter.RegisterDisplayList) do
-		if Adapter.GetCeil(size[1] / v[1]) == Adapter.GetCeil(size[1] / v[2]) then
+		if Adapter.GetCeil(size[1] / v[1]) == Adapter.GetCeil(size[2] / v[2]) then
 			scale = tostring(v[1]) .. ":" .. tostring(v[2])
 			found_flag = true
 			break
@@ -83,7 +85,7 @@ function Adapter.RegisterCurrentDisplay(size)
 end
 
 function Adapter.FindCurrentData()
-	local scale_x,scale_y = -1,-1
+	local scale_x ,scale_y = -1,-1
 	local bak_x,bak_y = -1,-1
 	local x,y = Adapter.DisplaySize[1],Adapter.DisplaySize[2]
 	local found_flag = false
@@ -93,7 +95,7 @@ function Adapter.FindCurrentData()
 	end
 	
 	for key,v in pairs(Adapter.RegisterDisplayList) do
-		if Adapter.GetCeil(size[1] / v[1]) == Adapter.GetCeil(size[1] / v[2]) then
+		if Adapter.GetCeil(x / v[1]) == Adapter.GetCeil(y / v[2]) then
 			scale = tostring(v[1]) .. ":" .. tostring(v[2])
 			found_flag = true
 			break
@@ -109,7 +111,7 @@ function Adapter.FindCurrentData()
 			end
 		end
 	else
-		Debug.Error("无法找到当前分辨率的比例")
+		Debug.Error("无法找到当前分辨率的比例: " .. x .. "x" .. y)
 		return false
 	end
 	
