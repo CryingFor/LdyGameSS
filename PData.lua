@@ -1,13 +1,15 @@
 PData = {}
 
+PData.d = nil
+
 PData.data = {
-	["1920x1080"] = {
+	["android.1280x720"] = {
+		
+	},
+	
+	["iOS.1136x640"] = {
 		
 	}
-
-
-
-
 }
 
 

@@ -5,5 +5,5 @@ require "Task"
 init(0,1)
 
 
-Task:Init()
-Task:Start()
+Task.Init()
+Task.Start()

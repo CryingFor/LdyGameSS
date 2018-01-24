@@ -1,7 +1,7 @@
 Tool={}
 
 function Tool.mSleep(ms)
-	mSleep(ms/2)
+	mSleep(ms)
 end
 
 

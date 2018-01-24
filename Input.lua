@@ -1,13 +1,13 @@
 Input={}
 
-function Input:TouchPoint(x,y)
+function Input.TouchPoint(x,y)
 		touchDown(1,x,y)
 		mSleep(math.random(100,300))
 		touchUp(1,x,y)
 end
 
 --移动 dir可以选择down，up，left，right
-function Input:TouchMove(x,y,dir,length)
+function Input.TouchMove(x,y,dir,length)
 	local times = length / 10
 	touchDown(1,x,y)
 	for i = 1,times do
@@ -32,6 +32,8 @@ function Input:TouchMove(x,y,dir,length)
 		touchUp(1,x+length,y)
 	end
 end
+
+return Input
 
 
 
