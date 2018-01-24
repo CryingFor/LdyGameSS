@@ -1,39 +1,41 @@
 Input={}
 
-function Input.TouchPoint(x,y)
+function Input.Init()
+	math.randomseed(os.time()) 
+end
+
+function Input.TouchPoint(point)
+		x = point[1] + math.random(1,5)
+		y = point[2] + math.random(1,5)
 		touchDown(1,x,y)
-		mSleep(math.random(100,300))
+		mSleep(math.random(50,150))
 		touchUp(1,x,y)
+		mSleep(math.random(100,200))
 end
 
 --移动 dir可以选择down，up，left，right
 function Input.TouchMove(x,y,dir,length)
-	local times = length / 10
+	local times = length
 	touchDown(1,x,y)
+	mSleep(1000)
 	for i = 1,times do
-		if dir == "down" then
-			touchMove(1,x,y+10)
-		elseif dir == "up" then
-			touchMove(1,x,y-10)
-		elseif dir == "left" then
-			touchMove(1,x-10,y)
-		elseif dir == "right" then
-			touchMove(1,x+10,y)
+		if dir == "向下" then
+			y = y + 1
+			touchMove(1,x,y+1)
+		elseif dir == "向上" then
+			y = y - 1
+			touchMove(1,x,y-1)
+		elseif dir == "向左" then
+			x = x - 1
+			touchMove(1,x-1,y)
+		elseif dir == "向右" then
+			x = x + 1
+			touchMove(1,x+1,y)
 		end
-		mSleep(50)
 	end
-	if dir == "down" then
-		touchUp(1,x,y+length)
-	elseif dir == "up" then
-		touchUp(1,x,y-length)
-	elseif dir == "left" then
-		touchUp(1,x-length,y)
-	elseif dir == "right" then
-		touchUp(1,x+length,y)
-	end
+	touchUp(1,x,y)
+	mSleep(1000)
 end
-
-return Input
 
 
 
