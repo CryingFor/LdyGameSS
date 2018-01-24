@@ -1,3 +1,4 @@
+require "Input"
 Tool={}
 
 function Tool.mSleep(ms)

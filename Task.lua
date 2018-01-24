@@ -5,7 +5,7 @@ Task = {}
 
 
 Task.TaskList={
-{["Task"] = Task_1, ["Name"] = "任务1", ["Do"] = true}
+{["Task"] = Task_1, ["Name"] = "Task_1", ["Do"] = true}
 }
 
 --任务的公共初始化回调入口

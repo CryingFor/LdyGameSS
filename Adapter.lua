@@ -50,7 +50,7 @@ function Adapter.Init()
 	PData.d = PData.data[Adapter.System .. "." .. Adapter.DisplaySizePData[1] .. "x" .. Adapter.DisplaySizePData[2]]
 	
 	--TODO 设置分辨率缩放
-	setScreenScale(Adapter.DisplaySizePData[1],Adapter.DisplaySizePData[2])
+	setScreenScale(Adapter.DisplaySizePData[2],Adapter.DisplaySizePData[1])
 	
 end
 
