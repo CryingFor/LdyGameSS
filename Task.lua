@@ -1,10 +1,11 @@
 require "Debug"
+require "Task_1"
 
 Task = {}
 
 
 Task.TaskList={
-{["Task"] = Task_1, ["Name"] = "任务1", ["Do"] = false}
+{["Task"] = Task_1, ["Name"] = "任务1", ["Do"] = true}
 }
 
 --任务的公共初始化回调入口

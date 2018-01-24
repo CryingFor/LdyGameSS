@@ -19,7 +19,7 @@ Adapter.RegisterDisplayList = {
 {16,9},
 {17,9},
 {18,9},
-{18.5:9},
+{18.5,9},
 }
 
 --注册的分辨率
@@ -83,7 +83,7 @@ function Adapter.RegisterCurrentDisplay(size)
 end
 
 function Adapter.FindCurrentData()
-	local scale_x = -1,scale_y = -1
+	local scale_x,scale_y = -1,-1
 	local bak_x,bak_y = -1,-1
 	local x,y = Adapter.DisplaySize[1],Adapter.DisplaySize[2]
 	local found_flag = false
