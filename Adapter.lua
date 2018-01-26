@@ -40,7 +40,7 @@ function Adapter.Init()
 	Adapter.System = getOSType()
 	
 	--注册开发的分辨率
-	Adapter.RegisterCurrentDisplay({1280,720})
+	Adapter.RegisterCurrentDisplay("android",{1280,720})
 	
 	
 	--寻找匹配分辨率
@@ -63,7 +63,7 @@ function Adapter.GetCeil(num)
 	end
 end
 
-function Adapter.RegisterCurrentDisplay(size)
+function Adapter.RegisterCurrentDisplay(system,size)
 	local size_length = 0
 	local scale = "" 
 	local found_flag = false
@@ -80,7 +80,7 @@ function Adapter.RegisterCurrentDisplay(size)
 		return false
 	end
 	
-	table.insert(Adapter.RegisterDisplay[scale],1,size)
+	table.insert(Adapter.RegisterDisplay[scale],1,{system,size})
 	return true
 end
 
@@ -104,10 +104,12 @@ function Adapter.FindCurrentData()
 	if found_flag == true then
 		found_flag = false
 		for key,v in pairs(Adapter.RegisterDisplay[scale]) do
-			if (v[1] >= scale_x) and (v[1] <= x) and (v[2] >= scale_y) and (v[2] <= y) then
-				scale_x = v[1]
-				scale_y = v[2]
-				found_flag = true
+			if v[1] == Adapter.System then
+				if (v[2][1] >= scale_x) and (v[2][1] <= x) and (v[2][2] >= scale_y) and (v[2][2] <= y) then
+					scale_x = v[2][1]
+					scale_y = v[2][2]
+					found_flag = true
+				end
 			end
 		end
 	else
